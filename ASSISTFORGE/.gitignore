@@ -1,0 +1,80 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+#Node.js / TypeScript
+node_modules/
+dist/
+build/
+.env
+
+# TypeScript compiled files
+*.tsbuildinfo
+
+#Go
+*.exe
+*.out
+*.test  
+bin/
+vendor/
+
+*python 
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+env/
+*.egg-info/
+*.egg
+.Python
+
+# C / C++ / Build Artifacts
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.exe
+*.out
+*.dSYM/
+*.log
+
+# Database
+*.sqlite
+*.db
+*.sql
+*.dump
+
+# Frontend
+.next/
+out/
+coverage/
+*.log
+
+# General / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

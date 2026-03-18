@@ -1,36 +1,73 @@
-# AssistForge
-## Tech Stack
+# React + TypeScript + Vite
 
-AssetForge is a secure, desktop-first asset management system built with a layered, multi-language architecture.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Frontend
-- **React** – Component-based UI
-- **TypeScript** – Type-safe frontend logic
-- **Tailwind CSS** – Monochrome, engineering-focused design
+Currently, two official plugins are available:
 
-### Desktop Shell
-- **Tauri (Rust)** – Secure, lightweight desktop wrapper providing IPC, filesystem control, and process management
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Backend
-- **Go** – Core backend and system orchestrator
-  - Asset metadata management
-  - Versioning and audit logs
-  - Authentication and permissions
-  - AI service coordination
+## React Compiler
 
-### Systems & Security
-- **C** – Low-level modules for:
-  - File integrity verification
-  - Hashing
-  - Cryptographic helpers
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Artificial Intelligence
-- **Python** – Isolated AI service for:
-  - Asset auto-tagging
-  - Similarity & duplicate detection
-  - Semantic search
-  - Version analysis
+## Expanding the ESLint configuration
 
-### Data
-- **SQL** – Local relational database for assets, versions, and audit logs
-- **JSON** – Cross-layer data contracts and configuration
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
